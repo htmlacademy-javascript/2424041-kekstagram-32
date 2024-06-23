@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Джемал Маранели](https://up.htmlacademy.ru/javascript/32/user/2424041).
-* Наставник: `Неизвестно`.
+* Наставник: [Никита Сигов](https://htmlacademy.ru/profile/crazer).
 
 ---
 
