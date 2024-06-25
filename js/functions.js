@@ -36,6 +36,10 @@ const getNumber = function (string) {
     }
   }
 
+  if (result === '') {
+    return NaN;
+  }
+
   return result;
 };
 
@@ -47,6 +51,7 @@ isPalindrome('Лёша на полке клопа нашёл! ');
 
 getNumber('10 тарелок');
 getNumber('Купи 3 килограмма муки');
+getNumber('А я томат');
 getNumber(2023);
 getNumber(-1);
 getNumber(1.5);
