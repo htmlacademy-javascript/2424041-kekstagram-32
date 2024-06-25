@@ -9,6 +9,7 @@ const checkStringLength = function (string, maxLength) {
 const isPalindrome = function (string) {
   let cleanString = string.replaceAll(' ', '');
   let newString = '';
+
   cleanString = cleanString.toLowerCase(string.replaceAll(' ', ''));
 
   for (let i = cleanString.length - 1; i >= 0; i--) {
