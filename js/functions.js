@@ -1,38 +1,28 @@
-const checkStringLength = function (string, maxLength) {
-  if (string.length <= maxLength) {
-    return true;
-  }
+function checkStringLength (string, maxLength) {
+  return string.length <= maxLength;
+}
 
-  return false;
-};
-
-const isPalindrome = function (string) {
-  let cleanString = string.replaceAll(' ', '');
+function isPalindrome (string) {
+  const cleanString = string.toLowerCase().replaceAll(' ', '');
   let newString = '';
-
-  cleanString = cleanString.toLowerCase(string.replaceAll(' ', ''));
 
   for (let i = cleanString.length - 1; i >= 0; i--) {
     newString += cleanString[i];
   }
 
-  if (cleanString === newString) {
-    return true;
-  }
+  return cleanString === newString;
+}
 
-  return false;
-};
-
-const getNumber = function (string) {
+function getNumber (string) {
   let result = '';
 
-  string = string.toString();
+  const newString = string.toString();
 
-  for (let i = 0; i < string.length; i++) {
-    const char = parseInt(string[i], 10);
+  for (let i = 0; i < newString.length; i++) {
+    const char = parseInt(newString[i], 10);
 
     if (!Number.isNaN(char)) {
-      result += string[i];
+      result += newString[i];
     }
   }
 
@@ -40,8 +30,8 @@ const getNumber = function (string) {
     return NaN;
   }
 
-  return result;
-};
+  return parseInt(result, 10);
+}
 
 checkStringLength('Привет Мир!', 20);
 checkStringLength('Привет Мир!', 10);
@@ -55,3 +45,4 @@ getNumber('А я томат');
 getNumber(2023);
 getNumber(-1);
 getNumber(1.5);
+getNumber('агент 007');
