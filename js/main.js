@@ -19,33 +19,33 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
 ];
 
-const DESCRIPTIONS = {
-  photo1: 'Вид из окна моего отеля!',
-  photo2: 'Идем на пляж.',
-  photo3: 'Нашли укромное место с видом на пляж',
-  photo4: 'Сегодня загараем и делаем фотки!',
-  photo5: 'Подача блюд в местном ресторане)',
-  photo6: 'Увидел во дворе такую красавицу!',
-  photo7: 'Сажусь на диету!',
-  photo8: 'Наготовили морса!',
-  photo9: 'А у нас сегодня была экстренная посадка на пляже.',
-  photo10: 'Нашла куртой органайзер для обуви на маркетплейсе.',
-  photo11: 'Дорога на пляж.',
-  photo12: 'Купил новую машину!',
-  photo13: 'Легкий перекус на Бали',
-  photo14: 'У нашего Барсика фотосессия',
-  photo15: 'Классные тапки!',
-  photo16: 'Сделал фото пока летел.',
-  photo17: 'Наконец-то побывал на концерте.',
-  photo18: 'Был сегодня на выставке ретро автомобилей.',
-  photo19: 'О! Мне такие надо!',
-  photo20: 'Внутрений двор нашего отеля.',
-  photo21: 'Сегодня буду готовить такую вкусняху!',
-  photo22: 'Снял красивый закат.',
-  photo23: 'Сфоткала вот такого красавца недалеко от пляжа.',
-  photo24: 'Ура! Наконец-то побывал на их концерте!',
-  photo25: 'Побывали на сафари!',
-};
+const DESCRIPTIONS = [
+  'Вид из окна моего отеля!',
+  'Идем на пляж.',
+  'Нашли укромное место с видом на пляж',
+  'Сегодня загараем и делаем фотки!',
+  'Подача блюд в местном ресторане)',
+  'Увидел во дворе такую красавицу!',
+  'Сажусь на диету!',
+  'Наготовили морса!',
+  'А у нас сегодня была экстренная посадка на пляже.',
+  'Нашла куртой органайзер для обуви на маркетплейсе.',
+  'Дорога на пляж.',
+  'Купил новую машину!',
+  'Легкий перекус на Бали',
+  'У нашего Барсика фотосессия',
+  'Классные тапки!',
+  'Сделал фото пока летел.',
+  'Наконец-то побывал на концерте.',
+  'Был сегодня на выставке ретро автомобилей.',
+  'О! Мне такие надо!',
+  'Внутрений двор нашего отеля.',
+  'Сегодня буду готовить такую вкусняху!',
+  'Снял красивый закат.',
+  'Сфоткала вот такого красавца недалеко от пляжа.',
+  'Ура! Наконец-то побывал на их концерте!',
+  'Побывали на сафари!',
+];
 
 function getRandomInteger(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
@@ -85,18 +85,15 @@ const generatePhotoId = createIdGenerator();
 const generateCommentId = createIdGenerator();
 
 function createPost() {
-  const randomInteger = getRandomUniqueInteger(1, 25);
-  const randomUrl = `img/photos/${randomInteger()}.svg`;
-  const photoDescription = `photo${randomInteger()}`;
+  const randomUrl = `img/photos/${getRandomUniqueInteger(1, 25)()}.svg`;
+  const photoDescription = DESCRIPTIONS[getRandomUniqueInteger(0, DESCRIPTIONS.length - 1)()];
 
   return {
     id: generatePhotoId(),
     url: randomUrl,
-    description: DESCRIPTIONS[photoDescription],
+    description: photoDescription,
     likes: getRandomInteger(15, 200),
     comments: Array.from({length: getRandomInteger(0, 30)}, createComment),
-    // Или через функцию создания списка.
-    // comments: createCommentsList(getRandomInteger(0, 30)),
   };
 }
 
@@ -114,26 +111,5 @@ function createComment() {
 }
 
 const createPostsList = Array.from({length: 25}, createPost);
-createPostsList();
-
-// Первая реализация создания массива постов и коментариев, позже вспомнил про метод массивов, решил не удалять.
-
-// function createPostsList(count) {
-//   const postsList = [];
-
-//   for (let i = 1; i <= count; i++) {
-//     postsList.push(createPost());
-//   }
-
-//   return postsList;
-// }
-
-// function createCommentsList(count) {
-//   const commentsList = [];
-
-//   for (let i = 1; i <= count; i++) {
-//     commentsList.push(createComment());
-//   }
-
-//   return commentsList;
-// }
+// eslint-disable-next-line
+console.log(createPostsList);
