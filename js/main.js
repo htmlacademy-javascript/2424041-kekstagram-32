@@ -1,4 +1,3 @@
-import { createPostsList } from './posts-generator';
+import { thumbnailsGenerator } from './thumbnails-generator.js';
 
-// eslint-disable-next-line
-console.log(createPostsList());
+thumbnailsGenerator();
