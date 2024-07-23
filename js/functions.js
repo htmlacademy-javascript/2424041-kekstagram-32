@@ -48,21 +48,19 @@ getNumber(1.5);
 getNumber('агент 007');
 
 function isTimeFits (dayStart, dayEnd, meetingStart, meetingTime) {
-  let result = false;
-
   const dayStartSplited = dayStart.split(':');
   const dayEndSplited = dayEnd.split(':');
   const meetingStartSplited = meetingStart.split(':');
 
-  const dayStartTotalMinutes = (+dayStartSplited[0] * 60) + +dayStartSplited[1];
-  const dayEndTotalMinutes = (+dayEndSplited[0] * 60) + +dayEndSplited[1];
-  const meetingStartTotalMinutes = (+meetingStartSplited[0] * 60) + +meetingStartSplited[1];
+  const dayStartTotalMinutes = (parseInt(dayStartSplited[0], 10) * 60) + parseInt(dayStartSplited[1], 10);
+  const dayEndTotalMinutes = (parseInt(dayEndSplited[0], 10) * 60) + parseInt(dayEndSplited[1], 10);
+  const meetingStartTotalMinutes = (parseInt(meetingStartSplited[0], 10) * 60) + parseInt(meetingStartSplited[1], 10);
 
   if (meetingStartTotalMinutes >= dayStartTotalMinutes && (meetingStartTotalMinutes + meetingTime) <= dayEndTotalMinutes) {
-    result = true;
+    return true;
   }
 
-  return result;
+  return false;
 }
 
 isTimeFits('08:00', '17:30', '14:00', 90);

@@ -1,11 +1,11 @@
-import { DESCRIPTIONS } from './database';
-import { getRandomInteger, getRandomUniqueInteger, createIdGenerator } from './integer-generator';
-import { createCommentsList } from './comments-generator';
+import { DESCRIPTIONS } from './database.js';
+import { getRandomInteger, getRandomUniqueInteger, createIdGenerator } from './integer-generator.js';
+import { createCommentsList } from './comments-generator.js';
 
 const generatePhotoId = createIdGenerator();
 
 function createPost() {
-  const randomUrl = `img/photos/${getRandomUniqueInteger(1, 25)()}.svg`;
+  const randomUrl = `photos/${getRandomUniqueInteger(1, 25)()}.jpg`;
   const photoDescription = DESCRIPTIONS[getRandomUniqueInteger(0, DESCRIPTIONS.length - 1)()];
 
   return {

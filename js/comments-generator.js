@@ -1,5 +1,5 @@
-import { NAMES, MESSAGES } from './database';
-import { getRandomInteger, createIdGenerator } from './integer-generator';
+import { NAMES, MESSAGES } from './database.js';
+import { getRandomInteger, createIdGenerator } from './integer-generator.js';
 
 const generateCommentId = createIdGenerator();
 
