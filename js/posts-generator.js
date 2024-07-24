@@ -3,9 +3,10 @@ import { getRandomInteger, getRandomUniqueInteger, createIdGenerator } from './i
 import { createCommentsList } from './comments-generator.js';
 
 const generatePhotoId = createIdGenerator();
+const generateUrlInteger = getRandomUniqueInteger(1, 25);
 
 function createPost() {
-  const randomUrl = `photos/${getRandomUniqueInteger(1, 25)()}.jpg`;
+  const randomUrl = `photos/${generateUrlInteger()}.jpg`;
   const photoDescription = DESCRIPTIONS[getRandomUniqueInteger(0, DESCRIPTIONS.length - 1)()];
 
   return {
