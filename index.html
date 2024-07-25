@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <title>Кекстаграм</title>
   <script defer src="js/main.js" type="module"></script>
-  <script defer src="js/functions.js"></script>
+  <script defer src="js/helpers/functions.js"></script>
 </head>
 
 <body>
@@ -207,6 +207,13 @@
         <span class="picture__likes"></span>
       </p>
     </a>
+  </template>
+
+  <template id="comment">
+    <li class="social__comment">
+      <img class="social__picture" src="#" alt="Имя комментора" width="35" height="35">
+      <p class="social__text"></p>
+    </li>
   </template>
 
   <!-- Сообщение с ошибкой загрузки изображения -->
