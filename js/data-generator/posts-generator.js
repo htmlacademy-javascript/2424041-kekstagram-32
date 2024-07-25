@@ -18,8 +18,8 @@ function createPost() {
   };
 }
 
-const createPostsList = function () {
+function createPostsList () {
   return Array.from({ length: 25 }, createPost);
-};
+}
 
 export { createPostsList };

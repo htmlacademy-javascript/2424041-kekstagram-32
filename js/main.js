@@ -1,3 +1,3 @@
-import { thumbnailsGenerator } from './thumbnails-generator.js';
+import { galleryCompilator } from './elements-render/gallery-compilator.js';
 
-thumbnailsGenerator();
+galleryCompilator();

@@ -16,8 +16,8 @@ function createComment() {
   };
 }
 
-const createCommentsList = function () {
+function createCommentsList() {
   return Array.from({ length: getRandomInteger(0, 30) }, createComment);
-};
+}
 
 export { createCommentsList };
