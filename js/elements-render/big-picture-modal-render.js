@@ -70,7 +70,6 @@ function bigPictureModalRender(item) {
   bigPictureImg.src = item.url;
   bigPictureLikes.textContent = item.likes;
   bigPictureDescription.textContent = item.description;
-
   bigPictureTotalCommentsCount.textContent = item.comments.length;
 
   bigPictureModalOpener();
