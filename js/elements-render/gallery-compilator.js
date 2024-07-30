@@ -17,7 +17,7 @@ function galleryCompilator() {
 
       for (let i = 0; i < postsList.length; i++) {
         if (pictureId === postsList[i].id) {
-          bigPictureModalRender(postsList[i]);
+          return bigPictureModalRender(postsList[i]);
         }
       }
     }

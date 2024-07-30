@@ -1,8 +1,8 @@
-function isEscapeKeydown (evt) {
+function isEscapeKeydown(evt) {
   return evt.key === 'Escape';
 }
 
-function isClickTargetTrue (evt, targetEl) {
+function isClickTargetTrue(evt, targetEl) {
   return evt.target === targetEl;
 }
 
