@@ -33,7 +33,6 @@ function bigPictureCloseButtonDown(evt) {
 function bigPictureLoadMoreCommentsButtonDown(item, container) {
   return function (evt) {
     if (isClickTargetTrue(evt, bigPictureCommentsLoader)) {
-      console.log('Загрузка комментариев...');
       commentsPartRender(item, container);
     }
   };
