@@ -4,6 +4,8 @@ const bigPictureCommentsShownCount = document.querySelector('.social__comment-sh
 const bigPictureCommentsLoader = document.querySelector('.comments-loader');
 
 const PART_OF_COMMENTS = 5;
+let commentsToRenderCount = 0;
+let isChildrenReplaced = false;
 
 function commentRender(comment) {
   const commentsItem = commentTemplateItem.cloneNode(true);
@@ -14,9 +16,6 @@ function commentRender(comment) {
 
   return commentsItem;
 }
-
-let commentsToRenderCount = 0;
-let isChildrenReplaced = false;
 
 function commentsPartRender(commentsArray, container) {
   const renderedComments = Math.min(commentsToRenderCount + PART_OF_COMMENTS, commentsArray.length);
