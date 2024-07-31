@@ -10,9 +10,8 @@ function galleryCompilator() {
   thumbnailsRender(postsList, picturesContainer);
 
   picturesContainer.addEventListener('click', (evt) => {
-    evt.preventDefault();
-
     if (evt.target.closest('.picture')) {
+      evt.preventDefault();
       const pictureId = parseInt(evt.target.closest('.picture').getAttribute('data-id'), 10);
 
       for (let i = 0; i < postsList.length; i++) {
