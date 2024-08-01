@@ -4,7 +4,7 @@ const bigPictureCommentsShownCount = document.querySelector('.social__comment-sh
 const bigPictureCommentsLoader = document.querySelector('.comments-loader');
 
 const PART_OF_COMMENTS = 5;
-let commentsToRenderCount = 0;
+let renderedComments = 0;
 
 function commentRender(comment) {
   const commentsItem = commentTemplateItem.cloneNode(true);
@@ -17,7 +17,7 @@ function commentRender(comment) {
 }
 
 function commentsPartRender(commentsArray, container) {
-  const renderedComments = Math.min(commentsToRenderCount + PART_OF_COMMENTS, commentsArray.length);
+  let commentsToRenderCount = Math.min(renderedComments + PART_OF_COMMENTS, commentsArray.length);
 
   if (commentsToRenderCount >= commentsArray.length) {
     commentsToRenderCount = commentsArray.length;
@@ -25,14 +25,14 @@ function commentsPartRender(commentsArray, container) {
 
   const commentsFragment = document.createDocumentFragment();
 
-  for (let i = commentsToRenderCount; i < renderedComments; i++) {
+  for (let i = renderedComments; i < commentsToRenderCount; i++) {
     const comment = commentRender(commentsArray[i]);
     commentsFragment.appendChild(comment);
   }
 
   container.appendChild(commentsFragment);
 
-  commentsToRenderCount = renderedComments;
+  renderedComments = commentsToRenderCount;
 
   if (commentsToRenderCount >= commentsArray.length) {
     bigPictureCommentsLoader.classList.add('hidden');
@@ -40,11 +40,11 @@ function commentsPartRender(commentsArray, container) {
     bigPictureCommentsLoader.classList.remove('hidden');
   }
 
-  bigPictureCommentsShownCount.textContent = commentsToRenderCount;
+  bigPictureCommentsShownCount.textContent = renderedComments;
 }
 
 function resetCommentsVariables() {
-  commentsToRenderCount = 0;
+  renderedComments = 0;
 }
 
 export { commentsPartRender, resetCommentsVariables };
