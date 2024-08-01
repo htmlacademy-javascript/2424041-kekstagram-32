@@ -10,15 +10,14 @@ function galleryCompilator() {
   thumbnailsRender(postsList, picturesContainer);
 
   picturesContainer.addEventListener('click', (evt) => {
-    evt.preventDefault();
-
     if (evt.target.closest('.picture')) {
       const pictureId = parseInt(evt.target.closest('.picture').getAttribute('data-id'), 10);
 
-      for (let i = 0; i < postsList.length; i++) {
-        if (pictureId === postsList[i].id) {
-          return bigPictureModalRender(postsList[i]);
-        }
+      const postToRender = postsList.find((item) => item.id === pictureId);
+
+      if (postToRender) {
+        evt.preventDefault();
+        bigPictureModalRender(postToRender);
       }
     }
   });

@@ -1,4 +1,3 @@
-import { isEscapeKeydown, isClickTargetTrue } from '../helpers/user-events-checker.js';
 import { commentsPartRender, resetCommentsVariables } from './comments-render.js';
 
 const bigPictureModal = document.querySelector('.big-picture');
@@ -10,32 +9,22 @@ const bigPictureTotalCommentsCount = bigPictureModal.querySelector('.social__com
 const bigPictureCommentsList = document.querySelector('.social__comments');
 const bigPictureCommentsLoader = document.querySelector('.comments-loader');
 
-let loadMoreCommentsListener;
-
 function escapeKeydown(evt) {
-  if (isEscapeKeydown(evt)) {
+  if (evt.key === 'Escape') {
     bigPictureModalCloser();
   }
 }
 
 function mouseButtonDown(evt) {
-  if (isClickTargetTrue(evt, bigPictureModal)) {
+  if (evt.target === bigPictureModal) {
     bigPictureModalCloser();
   }
 }
 
 function bigPictureCloseButtonDown(evt) {
-  if (isClickTargetTrue(evt, bigPictureCloseButton)) {
+  if (evt.target === bigPictureCloseButton) {
     bigPictureModalCloser();
   }
-}
-
-function bigPictureLoadMoreCommentsButtonDown(item, container) {
-  return function (evt) {
-    if (isClickTargetTrue(evt, bigPictureCommentsLoader)) {
-      commentsPartRender(item, container);
-    }
-  };
 }
 
 function bigPictureModalOpener() {
@@ -55,10 +44,6 @@ function bigPictureModalCloser() {
   document.removeEventListener('click', mouseButtonDown);
   bigPictureCloseButton.removeEventListener('click', bigPictureCloseButtonDown);
 
-  if (loadMoreCommentsListener) {
-    bigPictureCommentsLoader.removeEventListener('click', loadMoreCommentsListener);
-  }
-
   if (bigPictureCommentsLoader.classList.contains('hidden')) {
     bigPictureCommentsLoader.classList.remove('hidden');
   }
@@ -74,11 +59,11 @@ function bigPictureModalRender(item) {
 
   bigPictureModalOpener();
 
+  bigPictureCommentsList.replaceChildren();
+
   commentsPartRender(item.comments, bigPictureCommentsList);
 
-  loadMoreCommentsListener = bigPictureLoadMoreCommentsButtonDown(item.comments, bigPictureCommentsList);
-
-  bigPictureCommentsLoader.addEventListener('click', loadMoreCommentsListener);
+  bigPictureCommentsLoader.addEventListener('click', () => commentsPartRender(item.comments, bigPictureCommentsList));
 }
 
 export { bigPictureModalRender };
