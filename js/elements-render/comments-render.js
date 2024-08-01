@@ -5,7 +5,6 @@ const bigPictureCommentsLoader = document.querySelector('.comments-loader');
 
 const PART_OF_COMMENTS = 5;
 let commentsToRenderCount = 0;
-let isChildrenReplaced = false;
 
 function commentRender(comment) {
   const commentsItem = commentTemplateItem.cloneNode(true);
@@ -19,11 +18,6 @@ function commentRender(comment) {
 
 function commentsPartRender(commentsArray, container) {
   const renderedComments = Math.min(commentsToRenderCount + PART_OF_COMMENTS, commentsArray.length);
-
-  if (!isChildrenReplaced) {
-    container.replaceChildren();
-    isChildrenReplaced = true;
-  }
 
   if (commentsToRenderCount >= commentsArray.length) {
     commentsToRenderCount = commentsArray.length;
@@ -51,7 +45,6 @@ function commentsPartRender(commentsArray, container) {
 
 function resetCommentsVariables() {
   commentsToRenderCount = 0;
-  isChildrenReplaced = false;
 }
 
 export { commentsPartRender, resetCommentsVariables };
