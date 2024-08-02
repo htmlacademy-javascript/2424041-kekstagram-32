@@ -1,3 +1,3 @@
-import { galleryRender } from './elements-render/gallery-compilator.js';
+import { galleryRender } from './elements-render/gallery-render.js';
 
 galleryRender();
