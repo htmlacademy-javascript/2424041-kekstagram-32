@@ -60,6 +60,7 @@ function bigPictureModalCloser() {
     bigPictureCommentsLoader.classList.remove('hidden');
   }
 
+  comments = [];
   renderedComments = 0;
 }
 
