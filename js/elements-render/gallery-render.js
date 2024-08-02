@@ -4,7 +4,7 @@ import { bigPictureModalRender } from './big-picture-modal-render.js';
 
 const picturesContainer = document.querySelector('.pictures');
 
-function galleryCompilator() {
+function galleryRender() {
   const postsList = createPostsList();
 
   thumbnailsRender(postsList, picturesContainer);
@@ -23,4 +23,4 @@ function galleryCompilator() {
   });
 }
 
-export { galleryCompilator };
+export { galleryRender };
