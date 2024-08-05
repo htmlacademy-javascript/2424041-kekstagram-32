@@ -1,4 +1,4 @@
-import { formValidation } from '../helpers/form-validation.js';
+import { formValidation, pristine } from '../helpers/form-validation.js';
 
 const form = document.querySelector('.img-upload__form');
 
@@ -45,6 +45,8 @@ function imageUploadModalOpener() {
 function imageUploadModalCloser() {
   imageUploadModal.classList.add('hidden');
   document.body.classList.remove('modal-open');
+
+  pristine.reset();
 
   imageInput.value = '';
   imageEffectLevelInput.value = '';
