@@ -83,4 +83,4 @@ pristine.addValidator(
   true
 );
 
-export { formValidation };
+export { formValidation, pristine };
