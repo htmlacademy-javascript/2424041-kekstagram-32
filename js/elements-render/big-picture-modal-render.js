@@ -25,10 +25,8 @@ function mouseButtonDown(evt) {
   }
 }
 
-function bigPictureCloseButtonDown(evt) {
-  if (evt.target === bigPictureCloseButton) {
-    bigPictureModalCloser();
-  }
+function bigPictureCloseDown() {
+  bigPictureModalCloser();
 }
 
 function loadCommentsListener(evt) {
@@ -44,7 +42,7 @@ function bigPictureModalOpener() {
   document.addEventListener('keydown', escapeKeydown);
   document.addEventListener('click', mouseButtonDown);
   bigPictureCommentsLoader.addEventListener('click', loadCommentsListener);
-  bigPictureCloseButton.addEventListener('click', bigPictureCloseButtonDown);
+  bigPictureCloseButton.addEventListener('click', bigPictureCloseDown);
 }
 
 function bigPictureModalCloser() {
@@ -54,7 +52,7 @@ function bigPictureModalCloser() {
   document.removeEventListener('keydown', escapeKeydown);
   document.removeEventListener('click', mouseButtonDown);
   bigPictureCommentsLoader.removeEventListener('click', loadCommentsListener);
-  bigPictureCloseButton.removeEventListener('click', bigPictureCloseButtonDown);
+  bigPictureCloseButton.removeEventListener('click', bigPictureCloseDown);
 
   if (bigPictureCommentsLoader.classList.contains('hidden')) {
     bigPictureCommentsLoader.classList.remove('hidden');
