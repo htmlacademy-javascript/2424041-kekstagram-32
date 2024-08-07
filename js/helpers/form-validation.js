@@ -1,5 +1,3 @@
-import '../../vendor/pristine/pristine.min.js';
-
 const MAX_HASHTAG_COUNT = 5;
 const MAX_COMMENT_LENGTH = 140;
 const VALID_SAMPLE = /^#[a-zа-я0-9]{1,19}$/i;
@@ -79,7 +77,7 @@ pristine.addValidator(
   imageFormCommentInput,
   lengthCommentChecker,
   errorMessages.MAX_COMMENT_LENGTH,
-  4,
+  1,
   true
 );
 

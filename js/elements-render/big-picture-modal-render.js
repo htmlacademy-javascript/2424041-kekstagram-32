@@ -19,12 +19,6 @@ function escapeKeydown(evt) {
   }
 }
 
-function mouseButtonDown(evt) {
-  if (evt.target === bigPictureModal) {
-    bigPictureModalCloser();
-  }
-}
-
 function bigPictureCloseDown() {
   bigPictureModalCloser();
 }
@@ -40,7 +34,6 @@ function bigPictureModalOpener() {
   document.body.classList.add('modal-open');
 
   document.addEventListener('keydown', escapeKeydown);
-  document.addEventListener('click', mouseButtonDown);
   bigPictureCommentsLoader.addEventListener('click', loadCommentsListener);
   bigPictureCloseButton.addEventListener('click', bigPictureCloseDown);
 }
@@ -50,7 +43,6 @@ function bigPictureModalCloser() {
   document.body.classList.remove('modal-open');
 
   document.removeEventListener('keydown', escapeKeydown);
-  document.removeEventListener('click', mouseButtonDown);
   bigPictureCommentsLoader.removeEventListener('click', loadCommentsListener);
   bigPictureCloseButton.removeEventListener('click', bigPictureCloseDown);
 
