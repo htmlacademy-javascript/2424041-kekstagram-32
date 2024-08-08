@@ -17,7 +17,7 @@ function hashtagNormalize(hashtagsString) {
 }
 
 function hashtagSampleChecker(value) {
-  if (value === ''){
+  if (value === '') {
     return true;
   }
 
@@ -33,7 +33,7 @@ function hashtagCountChecker(value) {
   return hashtagNormalize(value).length <= MAX_HASHTAG_COUNT;
 }
 
-function lengthCommentChecker(value){
+function lengthCommentChecker(value) {
   return value.length < MAX_COMMENT_LENGTH;
 }
 
@@ -42,12 +42,6 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'img-upload__field-wrapper--error'
 });
-
-function formValidation(evt) {
-  if (!pristine.validate()) {
-    evt.preventDefault();
-  }
-}
 
 pristine.addValidator(
   imageFormHashtagInput,
@@ -81,4 +75,4 @@ pristine.addValidator(
   true
 );
 
-export { formValidation, pristine };
+export { pristine };

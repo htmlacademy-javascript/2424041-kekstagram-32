@@ -23,10 +23,8 @@ function bigPictureCloseDown() {
   bigPictureModalCloser();
 }
 
-function loadCommentsListener(evt) {
-  if (evt.target === bigPictureCommentsLoader) {
-    commentsPartRender(comments);
-  }
+function loadCommentsListener() {
+  commentsPartRender(comments);
 }
 
 function bigPictureModalOpener() {
@@ -65,7 +63,7 @@ function commentRender(comment) {
 }
 
 function commentsPartRender(commentsArray) {
-  if(commentsArray) {
+  if (commentsArray) {
     comments = commentsArray;
   }
 
