@@ -6,6 +6,7 @@ import { sendData } from '../api.js';
 const form = document.querySelector('.img-upload__form');
 const imageUploadModal = document.querySelector('.img-upload__overlay');
 const imageInput = document.querySelector('.img-upload__input');
+const previewImage = document.querySelector('.img-upload__preview img');
 const imageSubmitButton = document.querySelector('.img-upload__submit');
 const imageFormHashtagInput = document.querySelector('.text__hashtags');
 const imageFormDescriptionInput = document.querySelector('.text__description');
@@ -15,6 +16,8 @@ const scaleBiggerButton = document.querySelector('.scale__control--bigger');
 const filtersList = document.querySelector('.effects__list');
 const submitErrorTemplate = document.querySelector('#error').content.querySelector('.error');
 const submitSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
+
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 function escapeKeydown(evt) {
   if (evt.key === 'Escape') {
@@ -68,6 +71,14 @@ function imageUploadModalCloser() {
 
 imageInput.addEventListener('change', () => {
   imageUploadModalOpener();
+
+  const file = imageInput.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    previewImage.src = URL.createObjectURL(file);
+  }
 });
 
 function showSubmitError() {
