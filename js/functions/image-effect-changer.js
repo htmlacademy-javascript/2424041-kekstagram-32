@@ -3,7 +3,7 @@ const sliderContainer = document.querySelector('.img-upload__effect-level');
 const effectValue = document.querySelector('.effect-level__value');
 const upploadPreview = document.querySelector('.img-upload__preview img');
 
-const effects = {
+const Effects = {
   'effect-chrome': {
     options: {
       range: {
@@ -93,7 +93,7 @@ function applyEffect(item) {
     upploadPreview.style.removeProperty('filter');
   } else {
     sliderContainer.classList.remove('visually-hidden');
-    effectSlider.updateOptions(effects[chosenEffect].options);
+    effectSlider.updateOptions(Effects[chosenEffect].options);
   }
 }
 
@@ -102,7 +102,7 @@ function updateEffect() {
   effectValue.value = currentValue;
 
   if (chosenEffect !== 'effect-none') {
-    upploadPreview.style.filter = `${effects[chosenEffect].filter}(${currentValue}${effects[chosenEffect].unit})`;
+    upploadPreview.style.filter = `${Effects[chosenEffect].filter}(${currentValue}${Effects[chosenEffect].unit})`;
   }
 }
 

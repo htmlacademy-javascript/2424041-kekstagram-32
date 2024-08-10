@@ -1,9 +1,18 @@
 const pictureTemplateItem = document.querySelector('#picture').content.querySelector('.picture');
+const picturesContainer = document.querySelector('.pictures');
 
-function thumbnailsRender(arr, container) {
+function thumbnailsRender(postsArray) {
+  const oldPosts = picturesContainer.querySelectorAll('.picture');
+
+  oldPosts.forEach((post) => {
+    picturesContainer.removeChild(post);
+  });
+
+  const postsToRender = postsArray;
+
   const thumbnailsFragment = document.createDocumentFragment();
 
-  arr.forEach((postItem) => {
+  postsToRender.forEach((postItem) => {
     const pictureItem = pictureTemplateItem.cloneNode(true);
 
     pictureItem.querySelector('.picture__img').src = postItem.url;
@@ -15,7 +24,7 @@ function thumbnailsRender(arr, container) {
     thumbnailsFragment.appendChild(pictureItem);
   });
 
-  container.appendChild(thumbnailsFragment);
+  picturesContainer.appendChild(thumbnailsFragment);
 }
 
 export { thumbnailsRender };
