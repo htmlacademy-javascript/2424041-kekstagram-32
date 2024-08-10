@@ -1,10 +1,10 @@
-import { thumbnailsRender } from './thumbnails-render.js';
+import { galleryFiltration } from '../functions/gallery-filtration.js';
 import { bigPictureModalRender } from './big-picture-modal-render.js';
 
 const picturesContainer = document.querySelector('.pictures');
 
 function galleryRender(postsArray) {
-  thumbnailsRender(postsArray, picturesContainer);
+  galleryFiltration(postsArray);
 
   picturesContainer.addEventListener('click', (evt) => {
     if (evt.target.closest('.picture')) {
