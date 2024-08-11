@@ -18,6 +18,7 @@ const submitErrorTemplate = document.querySelector('#error').content.querySelect
 const submitSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const MESSAGE_TIME = 5000;
 
 const escapeKeydown = (evt) => {
   if (evt.key === 'Escape') {
@@ -116,7 +117,7 @@ const showSubmitError = () => {
     document.removeEventListener('keydown', errorEscapeKeydown);
     document.removeEventListener('click', mouseButtonDown);
     submitError.remove();
-  }, 5000);
+  }, MESSAGE_TIME);
 };
 
 const showSubmitSuccess = () => {
@@ -128,17 +129,17 @@ const showSubmitSuccess = () => {
     submitSuccess.remove();
   });
 
-  function successEscapeKeydown(evt) {
+  const successEscapeKeydown = (evt) => {
     if (evt.key === 'Escape') {
       submitSuccess.remove();
     }
-  }
+  };
 
-  function mouseButtonDown(evt) {
+  const mouseButtonDown = (evt) => {
     if (evt.target === submitSuccess) {
       submitSuccess.remove();
     }
-  }
+  };
 
   document.addEventListener('keydown', successEscapeKeydown);
   document.addEventListener('click', mouseButtonDown);
@@ -147,7 +148,7 @@ const showSubmitSuccess = () => {
     document.removeEventListener('keydown', successEscapeKeydown);
     document.removeEventListener('click', mouseButtonDown);
     submitSuccess.remove();
-  }, 5000);
+  }, MESSAGE_TIME);
 };
 
 form.addEventListener('submit', (evt) => {

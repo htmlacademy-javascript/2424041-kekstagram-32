@@ -3,6 +3,7 @@ const paths = {
   GET_DATA: '/data',
   SEND_DATA: '/',
 };
+const MESSAGE_TIME = 5000;
 
 const showGettingDataError = () => {
   const dataErrorMessage = document.querySelector('#data-error').content.querySelector('.data-error').cloneNode(true);
@@ -10,7 +11,7 @@ const showGettingDataError = () => {
 
   setTimeout(() => {
     dataErrorMessage.remove();
-  }, 5000);
+  }, MESSAGE_TIME);
 };
 
 const getData = (callback) => {
