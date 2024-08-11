@@ -1,4 +1,4 @@
-import { thumbnailsRender } from '../elements-render/thumbnails-render.js';
+import { thumbnailsRender } from './thumbnails-render.js';
 
 const galleryFilters = document.querySelector('.img-filters');
 
@@ -34,8 +34,6 @@ function galleryFiltration(postsOriginArray) {
   const debouncedThumbnailsRender = debounce((filteredPosts) => thumbnailsRender(filteredPosts));
 
   galleryFilters.classList.remove('img-filters--inactive');
-
-  // document.querySelector('#filter-random').classList.add('img-filters__button--active');
 
   galleryFilters.addEventListener('click', (evt) => {
     if (evt.target.closest('.img-filters__button')) {

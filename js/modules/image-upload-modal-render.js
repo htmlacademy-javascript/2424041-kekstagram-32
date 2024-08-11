@@ -1,7 +1,7 @@
-import { pristine } from '../functions/form-validation.js';
-import { resetImageSize, scaleSmallerClick, scaleBiggerClick } from '../functions/image-resize.js';
-import { applyEffect, effectSlider } from '../functions/image-effect-changer.js';
-import { sendData } from '../api.js';
+import { pristine } from './form-validation.js';
+import { resetImageSize, scaleSmallerClick, scaleBiggerClick } from './image-resize.js';
+import { applyEffect, effectSlider } from './image-effect-changer.js';
+import { sendData } from './api.js';
 
 const form = document.querySelector('.img-upload__form');
 const imageUploadModal = document.querySelector('.img-upload__overlay');
