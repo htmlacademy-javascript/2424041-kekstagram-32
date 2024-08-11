@@ -18,15 +18,11 @@ function debounce(callback, timeoutDelay = 500) {
   };
 }
 
-function getRandomPosts(arr) {
-  return arr.sort(() => Math.random() - 0.5).slice(0, 10);
-}
+const getRandomPosts = (arr) => arr.sort(() => Math.random() - 0.5).slice(0, 10);
 
-function getHotPosts(arr) {
-  return arr.sort((postA, postB) => postB.comments.length - postA.comments.length);
-}
+const getHotPosts = (arr) => arr.sort((postA, postB) => postB.comments.length - postA.comments.length);
 
-function galleryFiltration(postsOriginArray) {
+const galleryFiltration = (postsOriginArray) => {
   const posts = postsOriginArray.slice();
 
   thumbnailsRender(postsOriginArray);
@@ -62,6 +58,6 @@ function galleryFiltration(postsOriginArray) {
       }
     }
   });
-}
+};
 
 export { galleryFiltration };

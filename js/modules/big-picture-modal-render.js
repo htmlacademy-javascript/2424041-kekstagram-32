@@ -13,28 +13,28 @@ const PART_OF_COMMENTS = 5;
 let comments = [];
 let renderedComments = 0;
 
-function escapeKeydown(evt) {
+const escapeKeydown = (evt) => {
   if (evt.key === 'Escape') {
     bigPictureModalCloser();
   }
-}
+};
 
-function bigPictureCloseDown() {
+const bigPictureCloseDown = () => {
   bigPictureModalCloser();
-}
+};
 
-function loadCommentsListener() {
+const loadCommentsListener = () => {
   commentsPartRender(comments);
-}
+};
 
-function bigPictureModalOpener() {
+const bigPictureModalOpener = () => {
   bigPictureModal.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
   document.addEventListener('keydown', escapeKeydown);
   bigPictureCommentsLoader.addEventListener('click', loadCommentsListener);
   bigPictureCloseButton.addEventListener('click', bigPictureCloseDown);
-}
+};
 
 function bigPictureModalCloser() {
   bigPictureModal.classList.add('hidden');

@@ -4,14 +4,14 @@ const paths = {
   SEND_DATA: '/',
 };
 
-function showGettingDataError() {
+const showGettingDataError = () => {
   const dataErrorMessage = document.querySelector('#data-error').content.querySelector('.data-error').cloneNode(true);
   document.body.appendChild(dataErrorMessage);
 
   setTimeout(() => {
     dataErrorMessage.remove();
   }, 5000);
-}
+};
 
 const getData = (callback) => {
   fetch(`${SERVER_URL}${paths.GET_DATA}`)

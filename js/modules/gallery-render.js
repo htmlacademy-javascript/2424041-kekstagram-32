@@ -3,7 +3,7 @@ import { bigPictureModalRender } from './big-picture-modal-render.js';
 
 const picturesContainer = document.querySelector('.pictures');
 
-function galleryRender(postsArray) {
+const galleryRender = (postsArray) => {
   galleryFiltration(postsArray);
 
   picturesContainer.addEventListener('click', (evt) => {
@@ -18,6 +18,6 @@ function galleryRender(postsArray) {
       }
     }
   });
-}
+};
 
 export { galleryRender };

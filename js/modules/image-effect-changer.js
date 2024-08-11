@@ -84,7 +84,7 @@ const effectSlider = noUiSlider.create(slider, {
 });
 
 
-function applyEffect(item) {
+const applyEffect = (item) => {
   chosenEffect = item.getAttribute('id');
 
   if(chosenEffect === 'effect-none') {
@@ -95,16 +95,16 @@ function applyEffect(item) {
     sliderContainer.classList.remove('visually-hidden');
     effectSlider.updateOptions(Effects[chosenEffect].options);
   }
-}
+};
 
-function updateEffect() {
+const updateEffect = () => {
   const currentValue = effectSlider.get();
   effectValue.value = currentValue;
 
   if (chosenEffect !== 'effect-none') {
     upploadPreview.style.filter = `${Effects[chosenEffect].filter}(${currentValue}${Effects[chosenEffect].unit})`;
   }
-}
+};
 
 effectSlider.on('update', updateEffect);
 

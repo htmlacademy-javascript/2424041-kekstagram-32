@@ -19,7 +19,7 @@ const submitSuccessTemplate = document.querySelector('#success').content.querySe
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
-function escapeKeydown(evt) {
+const escapeKeydown = (evt) => {
   if (evt.key === 'Escape') {
     const isErrorMessage = document.querySelector('.error');
 
@@ -29,20 +29,20 @@ function escapeKeydown(evt) {
       imageUploadModalCloser();
     }
   }
-}
+};
 
-function imageUploadCloseDown() {
+const imageUploadCloseDown = () => {
   imageUploadModalCloser();
-}
+};
 
-function filterListener(evt) {
+const filterListener = (evt) => {
   const target = evt.target.closest('.effects__radio');
   if (target) {
     applyEffect(target);
   }
-}
+};
 
-function imageUploadModalOpener() {
+const imageUploadModalOpener = () => {
   imageUploadModal.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
@@ -52,7 +52,7 @@ function imageUploadModalOpener() {
   scaleSmallerButton.addEventListener('click', scaleSmallerClick);
   scaleBiggerButton.addEventListener('click', scaleBiggerClick);
   filtersList.addEventListener('click', filterListener);
-}
+};
 
 function imageUploadModalCloser() {
   imageUploadModal.classList.add('hidden');
@@ -88,7 +88,7 @@ imageInput.addEventListener('change', () => {
   }
 });
 
-function showSubmitError() {
+const showSubmitError = () => {
   const submitError = submitErrorTemplate.cloneNode(true);
   const submitErrorButton = submitError.querySelector('.error__button');
   document.body.appendChild(submitError);
@@ -117,9 +117,9 @@ function showSubmitError() {
     document.removeEventListener('click', mouseButtonDown);
     submitError.remove();
   }, 5000);
-}
+};
 
-function showSubmitSuccess() {
+const showSubmitSuccess = () => {
   const submitSuccess = submitSuccessTemplate.cloneNode(true);
   const submitSuccessButton = submitSuccess.querySelector('.success__button');
   document.body.appendChild(submitSuccess);
@@ -148,7 +148,7 @@ function showSubmitSuccess() {
     document.removeEventListener('click', mouseButtonDown);
     submitSuccess.remove();
   }, 5000);
-}
+};
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
