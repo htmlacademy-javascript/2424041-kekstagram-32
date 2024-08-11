@@ -21,7 +21,9 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 
 function escapeKeydown(evt) {
   if (evt.key === 'Escape') {
-    if (document.activeElement === imageFormHashtagInput || document.activeElement === imageFormDescriptionInput) {
+    const isErrorMessage = document.querySelector('.error');
+
+    if (document.activeElement === imageFormHashtagInput || document.activeElement === imageFormDescriptionInput || isErrorMessage) {
       evt.stopPropagation();
     } else {
       imageUploadModalCloser();
@@ -75,9 +77,14 @@ imageInput.addEventListener('change', () => {
   const file = imageInput.files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const effectsPreviews = filtersList.querySelectorAll('.effects__preview');
 
   if (matches) {
     previewImage.src = URL.createObjectURL(file);
+
+    effectsPreviews.forEach((item) => {
+      item.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    });
   }
 });
 
@@ -152,15 +159,15 @@ form.addEventListener('submit', (evt) => {
     imageSubmitButton.disabled = true;
 
     sendData(formData)
-      .then(() => {
-        imageUploadModalCloser();
-      })
-      .catch(() => {
-        showSubmitError();
-      })
-      .finally(() => {
-        imageSubmitButton.disabled = false;
-        showSubmitSuccess();
+      .then((responce) => {
+        if (!responce.ok) {
+          showSubmitError();
+          imageSubmitButton.disabled = false;
+        } else {
+          imageUploadModalCloser();
+          imageSubmitButton.disabled = false;
+          showSubmitSuccess();
+        }
       });
   }
 });

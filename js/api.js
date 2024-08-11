@@ -5,20 +5,26 @@ const paths = {
 };
 
 function showGettingDataError() {
-  const gettingDataError = document.querySelector('#data-error').content.querySelector('.data-error').cloneNode(true);
-  document.body.appendChild(gettingDataError);
+  const dataErrorMessage = document.querySelector('#data-error').content.querySelector('.data-error').cloneNode(true);
+  document.body.appendChild(dataErrorMessage);
 
   setTimeout(() => {
-    gettingDataError.remove();
+    dataErrorMessage.remove();
   }, 5000);
 }
 
 const getData = (callback) => {
   fetch(`${SERVER_URL}${paths.GET_DATA}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if(!response.ok) {
+        throw new Error();
+      } else {
+        return response.json();
+      }
+    })
     .then((postsArray) => {
       callback(postsArray);
-    }) .catch(() => showGettingDataError());
+    }) .catch(showGettingDataError);
 };
 
 const sendData = (body) => fetch(

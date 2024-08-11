@@ -13,7 +13,7 @@ const imageFormHashtagInput = document.querySelector('.text__hashtags');
 const imageFormCommentInput = document.querySelector('.text__description');
 
 function hashtagNormalize(hashtagsString) {
-  return hashtagsString.trim().toLowerCase().split(' ');
+  return hashtagsString.trim().toLowerCase().split(' ').filter((element) => element !== '');
 }
 
 function hashtagSampleChecker(value) {

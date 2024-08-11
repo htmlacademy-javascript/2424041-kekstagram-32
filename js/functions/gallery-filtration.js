@@ -35,19 +35,21 @@ function galleryFiltration(postsOriginArray) {
 
   galleryFilters.classList.remove('img-filters--inactive');
 
+  // document.querySelector('#filter-random').classList.add('img-filters__button--active');
+
   galleryFilters.addEventListener('click', (evt) => {
     if (evt.target.closest('.img-filters__button')) {
       const button = evt.target;
       let activeButton = document.querySelector('.img-filters__button--active');
-      const isActive = button.classList.contains('.img-filters__button--active');
-
-      const chosenFilter = button.id;
+      const isActive = button.classList.contains('img-filters__button--active');
 
       if (!isActive) {
         activeButton.classList.remove('img-filters__button--active');
         button.classList.add('img-filters__button--active');
         activeButton = button;
       }
+
+      const chosenFilter = button.id;
 
       if (chosenFilter === Filters.DEFAULT) {
         debouncedThumbnailsRender(postsOriginArray);
