@@ -1,4 +1,5 @@
 import { thumbnailsRender } from './thumbnails-render.js';
+import { debounce } from './functions.js';
 
 const galleryFilters = document.querySelector('.img-filters');
 
@@ -8,21 +9,11 @@ const Filters = {
   HOT: 'filter-discussed'
 };
 
-function debounce(callback, timeoutDelay = 500) {
-  let timeoutId;
-
-  return (...rest) => {
-    clearTimeout(timeoutId);
-
-    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
-  };
-}
-
 const getRandomPosts = (arr) => arr.sort(() => Math.random() - 0.5).slice(0, 10);
 
 const getHotPosts = (arr) => arr.sort((postA, postB) => postB.comments.length - postA.comments.length);
 
-const galleryFiltration = (postsOriginArray = []) => {
+const filterGallery = (postsOriginArray = []) => {
   const posts = postsOriginArray.slice();
 
   thumbnailsRender(postsOriginArray);
@@ -62,4 +53,4 @@ const galleryFiltration = (postsOriginArray = []) => {
   });
 };
 
-export { galleryFiltration };
+export { filterGallery };

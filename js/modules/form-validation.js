@@ -12,7 +12,7 @@ const form = document.querySelector('.img-upload__form');
 const imageFormHashtagInput = document.querySelector('.text__hashtags');
 const imageFormCommentInput = document.querySelector('.text__description');
 
-const hashtagNormalize = (hashtagsString) => hashtagsString.trim().toLowerCase().split(' ').filter((element) => element !== '');
+const normalizeHashtags = (hashtagsString) => hashtagsString.trim().toLowerCase().split(' ').filter((element) => element !== '');
 
 
 const hashtagSampleChecker = (value) => {
@@ -20,15 +20,15 @@ const hashtagSampleChecker = (value) => {
     return true;
   }
 
-  return hashtagNormalize(value).every((hashtag) => VALID_SAMPLE.test(hashtag));
+  return normalizeHashtags(value).every((hashtag) => VALID_SAMPLE.test(hashtag));
 };
 
 const hashtagUniqueСhecker = (value) => {
-  const uniqueHashtags = new Set(hashtagNormalize(value));
-  return hashtagNormalize(value).length === uniqueHashtags.size;
+  const uniqueHashtags = new Set(normalizeHashtags(value));
+  return normalizeHashtags(value).length === uniqueHashtags.size;
 };
 
-const hashtagCountChecker = (value) => hashtagNormalize(value).length <= MAX_HASHTAG_COUNT;
+const hashtagCountChecker = (value) => normalizeHashtags(value).length <= MAX_HASHTAG_COUNT;
 
 const lengthCommentChecker = (value) => value.length < MAX_COMMENT_LENGTH;
 

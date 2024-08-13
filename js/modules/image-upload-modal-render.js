@@ -3,10 +3,13 @@ import { resetImageSize, scaleSmallerClick, scaleBiggerClick } from './image-res
 import { applyEffect, effectSlider } from './image-effect-changer.js';
 import { sendData } from './api.js';
 
+const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const MESSAGE_TIME = 5000;
+
 const form = document.querySelector('.img-upload__form');
 const imageUploadModal = document.querySelector('.img-upload__overlay');
 const imageInput = document.querySelector('.img-upload__input');
-const previewImage = document.querySelector('.img-upload__preview img');
+const uploadPreview = document.querySelector('.img-upload__preview img');
 const imageSubmitButton = document.querySelector('.img-upload__submit');
 const imageFormHashtagInput = document.querySelector('.text__hashtags');
 const imageFormDescriptionInput = document.querySelector('.text__description');
@@ -14,11 +17,9 @@ const imageUploadCloseButton = document.querySelector('.img-upload__cancel');
 const scaleSmallerButton = document.querySelector('.scale__control--smaller');
 const scaleBiggerButton = document.querySelector('.scale__control--bigger');
 const filtersList = document.querySelector('.effects__list');
+const sliderContainer = document.querySelector('.img-upload__effect-level');
 const submitErrorTemplate = document.querySelector('#error').content.querySelector('.error');
 const submitSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
-
-const FILE_TYPES = ['jpg', 'jpeg', 'png'];
-const MESSAGE_TIME = 5000;
 
 const escapeKeydown = (evt) => {
   if (evt.key === 'Escape') {
@@ -57,12 +58,14 @@ const imageUploadModalOpener = () => {
 
 function imageUploadModalCloser() {
   imageUploadModal.classList.add('hidden');
+  sliderContainer.classList.add('visually-hidden');
   document.body.classList.remove('modal-open');
 
   pristine.reset();
   form.reset();
   effectSlider.reset();
   resetImageSize();
+  uploadPreview.style.filter = '';
 
   document.removeEventListener('keydown', escapeKeydown);
   imageUploadCloseButton.removeEventListener('click', imageUploadCloseDown);
@@ -81,7 +84,7 @@ imageInput.addEventListener('change', () => {
   const effectsPreviews = filtersList.querySelectorAll('.effects__preview');
 
   if (matches) {
-    previewImage.src = URL.createObjectURL(file);
+    uploadPreview.src = URL.createObjectURL(file);
 
     effectsPreviews.forEach((item) => {
       item.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
@@ -163,12 +166,14 @@ form.addEventListener('submit', (evt) => {
       .then((responce) => {
         if (!responce.ok) {
           showSubmitError();
-          imageSubmitButton.disabled = false;
         } else {
           imageUploadModalCloser();
-          imageSubmitButton.disabled = false;
           showSubmitSuccess();
         }
+      })
+      .catch(showSubmitError)
+      .finally(() => {
+        imageSubmitButton.disabled = false;
       });
   }
 });
