@@ -1,10 +1,10 @@
-import { galleryFiltration } from './gallery-filtration.js';
+import { filterGallery } from './filter-gallery.js';
 import { bigPictureModalRender } from './big-picture-modal-render.js';
 
 const picturesContainer = document.querySelector('.pictures');
 
 const galleryRender = (postsArray) => {
-  galleryFiltration(postsArray);
+  filterGallery(postsArray);
 
   picturesContainer.addEventListener('click', (evt) => {
     if (evt.target.closest('.picture')) {
