@@ -17,15 +17,16 @@ const showGettingDataError = () => {
 const getData = (callback) => {
   fetch(`${SERVER_URL}${paths.GET_DATA}`)
     .then((response) => {
-      if(!response.ok) {
+      if (!response.ok) {
         throw new Error();
-      } else {
-        return response.json();
       }
+
+      return response.json();
     })
     .then((postsArray) => {
       callback(postsArray);
-    }) .catch(showGettingDataError);
+    })
+    .catch(showGettingDataError);
 };
 
 const sendData = (body) => fetch(

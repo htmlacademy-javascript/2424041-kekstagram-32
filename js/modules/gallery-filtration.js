@@ -22,14 +22,16 @@ const getRandomPosts = (arr) => arr.sort(() => Math.random() - 0.5).slice(0, 10)
 
 const getHotPosts = (arr) => arr.sort((postA, postB) => postB.comments.length - postA.comments.length);
 
-const galleryFiltration = (postsOriginArray) => {
+const galleryFiltration = (postsOriginArray = []) => {
   const posts = postsOriginArray.slice();
 
   thumbnailsRender(postsOriginArray);
 
   const debouncedThumbnailsRender = debounce((filteredPosts) => thumbnailsRender(filteredPosts));
 
-  galleryFilters.classList.remove('img-filters--inactive');
+  if(postsOriginArray.length > 0) {
+    galleryFilters.classList.remove('img-filters--inactive');
+  }
 
   galleryFilters.addEventListener('click', (evt) => {
     if (evt.target.closest('.img-filters__button')) {
