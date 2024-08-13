@@ -1,7 +1,7 @@
 const pictureTemplateItem = document.querySelector('#picture').content.querySelector('.picture');
 const picturesContainer = document.querySelector('.pictures');
 
-function thumbnailsRender(postsArray) {
+const thumbnailsRender = (postsArray) => {
   const oldPosts = picturesContainer.querySelectorAll('.picture');
 
   oldPosts.forEach((post) => {
@@ -25,6 +25,6 @@ function thumbnailsRender(postsArray) {
   });
 
   picturesContainer.appendChild(thumbnailsFragment);
-}
+};
 
 export { thumbnailsRender };

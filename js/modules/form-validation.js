@@ -12,30 +12,25 @@ const form = document.querySelector('.img-upload__form');
 const imageFormHashtagInput = document.querySelector('.text__hashtags');
 const imageFormCommentInput = document.querySelector('.text__description');
 
-function hashtagNormalize(hashtagsString) {
-  return hashtagsString.trim().toLowerCase().split(' ');
-}
+const hashtagNormalize = (hashtagsString) => hashtagsString.trim().toLowerCase().split(' ').filter((element) => element !== '');
 
-function hashtagSampleChecker(value) {
+
+const hashtagSampleChecker = (value) => {
   if (value === '') {
     return true;
   }
 
   return hashtagNormalize(value).every((hashtag) => VALID_SAMPLE.test(hashtag));
-}
+};
 
-function hashtagUniqueСhecker(value) {
+const hashtagUniqueСhecker = (value) => {
   const uniqueHashtags = new Set(hashtagNormalize(value));
   return hashtagNormalize(value).length === uniqueHashtags.size;
-}
+};
 
-function hashtagCountChecker(value) {
-  return hashtagNormalize(value).length <= MAX_HASHTAG_COUNT;
-}
+const hashtagCountChecker = (value) => hashtagNormalize(value).length <= MAX_HASHTAG_COUNT;
 
-function lengthCommentChecker(value) {
-  return value.length < MAX_COMMENT_LENGTH;
-}
+const lengthCommentChecker = (value) => value.length < MAX_COMMENT_LENGTH;
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',

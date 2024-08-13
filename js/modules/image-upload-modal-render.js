@@ -1,7 +1,7 @@
-import { pristine } from '../functions/form-validation.js';
-import { resetImageSize, scaleSmallerClick, scaleBiggerClick } from '../functions/image-resize.js';
-import { applyEffect, effectSlider } from '../functions/image-effect-changer.js';
-import { sendData } from '../api.js';
+import { pristine } from './form-validation.js';
+import { resetImageSize, scaleSmallerClick, scaleBiggerClick } from './image-resize.js';
+import { applyEffect, effectSlider } from './image-effect-changer.js';
+import { sendData } from './api.js';
 
 const form = document.querySelector('.img-upload__form');
 const imageUploadModal = document.querySelector('.img-upload__overlay');
@@ -18,29 +18,32 @@ const submitErrorTemplate = document.querySelector('#error').content.querySelect
 const submitSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
+const MESSAGE_TIME = 5000;
 
-function escapeKeydown(evt) {
+const escapeKeydown = (evt) => {
   if (evt.key === 'Escape') {
-    if (document.activeElement === imageFormHashtagInput || document.activeElement === imageFormDescriptionInput) {
+    const isErrorMessage = document.querySelector('.error');
+
+    if (document.activeElement === imageFormHashtagInput || document.activeElement === imageFormDescriptionInput || isErrorMessage) {
       evt.stopPropagation();
     } else {
       imageUploadModalCloser();
     }
   }
-}
+};
 
-function imageUploadCloseDown() {
+const imageUploadCloseDown = () => {
   imageUploadModalCloser();
-}
+};
 
-function filterListener(evt) {
+const filterListener = (evt) => {
   const target = evt.target.closest('.effects__radio');
   if (target) {
     applyEffect(target);
   }
-}
+};
 
-function imageUploadModalOpener() {
+const imageUploadModalOpener = () => {
   imageUploadModal.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
@@ -50,7 +53,7 @@ function imageUploadModalOpener() {
   scaleSmallerButton.addEventListener('click', scaleSmallerClick);
   scaleBiggerButton.addEventListener('click', scaleBiggerClick);
   filtersList.addEventListener('click', filterListener);
-}
+};
 
 function imageUploadModalCloser() {
   imageUploadModal.classList.add('hidden');
@@ -75,13 +78,18 @@ imageInput.addEventListener('change', () => {
   const file = imageInput.files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+  const effectsPreviews = filtersList.querySelectorAll('.effects__preview');
 
   if (matches) {
     previewImage.src = URL.createObjectURL(file);
+
+    effectsPreviews.forEach((item) => {
+      item.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+    });
   }
 });
 
-function showSubmitError() {
+const showSubmitError = () => {
   const submitError = submitErrorTemplate.cloneNode(true);
   const submitErrorButton = submitError.querySelector('.error__button');
   document.body.appendChild(submitError);
@@ -109,10 +117,10 @@ function showSubmitError() {
     document.removeEventListener('keydown', errorEscapeKeydown);
     document.removeEventListener('click', mouseButtonDown);
     submitError.remove();
-  }, 5000);
-}
+  }, MESSAGE_TIME);
+};
 
-function showSubmitSuccess() {
+const showSubmitSuccess = () => {
   const submitSuccess = submitSuccessTemplate.cloneNode(true);
   const submitSuccessButton = submitSuccess.querySelector('.success__button');
   document.body.appendChild(submitSuccess);
@@ -121,17 +129,17 @@ function showSubmitSuccess() {
     submitSuccess.remove();
   });
 
-  function successEscapeKeydown(evt) {
+  const successEscapeKeydown = (evt) => {
     if (evt.key === 'Escape') {
       submitSuccess.remove();
     }
-  }
+  };
 
-  function mouseButtonDown(evt) {
+  const mouseButtonDown = (evt) => {
     if (evt.target === submitSuccess) {
       submitSuccess.remove();
     }
-  }
+  };
 
   document.addEventListener('keydown', successEscapeKeydown);
   document.addEventListener('click', mouseButtonDown);
@@ -140,8 +148,8 @@ function showSubmitSuccess() {
     document.removeEventListener('keydown', successEscapeKeydown);
     document.removeEventListener('click', mouseButtonDown);
     submitSuccess.remove();
-  }, 5000);
-}
+  }, MESSAGE_TIME);
+};
 
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
@@ -152,15 +160,15 @@ form.addEventListener('submit', (evt) => {
     imageSubmitButton.disabled = true;
 
     sendData(formData)
-      .then(() => {
-        imageUploadModalCloser();
-      })
-      .catch(() => {
-        showSubmitError();
-      })
-      .finally(() => {
-        imageSubmitButton.disabled = false;
-        showSubmitSuccess();
+      .then((responce) => {
+        if (!responce.ok) {
+          showSubmitError();
+          imageSubmitButton.disabled = false;
+        } else {
+          imageUploadModalCloser();
+          imageSubmitButton.disabled = false;
+          showSubmitSuccess();
+        }
       });
   }
 });

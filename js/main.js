@@ -1,5 +1,5 @@
-import { getData } from './api.js';
-import { galleryRender } from './elements-render/gallery-render.js';
-import './elements-render/image-upload-modal-render.js';
+import { getData } from './modules/api.js';
+import { galleryRender } from './modules/gallery-render.js';
+import './modules/image-upload-modal-render.js';
 
 getData(galleryRender);

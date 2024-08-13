@@ -6,12 +6,12 @@ const MIN_VALUE = 25;
 const MAX_VALUE = 100;
 const DEFAULT_VALUE = 100;
 
-function imageResize(value) {
+const imageResize = (value) => {
   upploadPreview.style.transform = `scale(${value / 100})`;
   scaleValue.value = `${value}%`;
-}
+};
 
-function scaleBiggerClick() {
+const scaleBiggerClick = () => {
   const currentValue = parseInt(scaleValue.value, 10);
   let targetValue = currentValue;
 
@@ -20,9 +20,9 @@ function scaleBiggerClick() {
   }
 
   imageResize(targetValue);
-}
+};
 
-function scaleSmallerClick() {
+const scaleSmallerClick = () => {
   const currentValue = parseInt(scaleValue.value, 10);
   let targetValue = currentValue;
 
@@ -31,10 +31,10 @@ function scaleSmallerClick() {
   }
 
   imageResize(targetValue);
-}
+};
 
-function resetImageSize () {
+const resetImageSize = () => {
   imageResize(DEFAULT_VALUE);
-}
+};
 
-export { resetImageSize, scaleSmallerClick, scaleBiggerClick};
+export { resetImageSize, scaleSmallerClick, scaleBiggerClick };
