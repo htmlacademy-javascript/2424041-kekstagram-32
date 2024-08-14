@@ -2,27 +2,28 @@ import { pristine } from './form-validation.js';
 import { resetImageSize, scaleSmallerClick, scaleBiggerClick } from './image-resize.js';
 import { applyEffect, effectSlider } from './image-effect-changer.js';
 import { sendData } from './api.js';
+import { isEscapeKeydown } from './functions.js';
 
 const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const MESSAGE_TIME = 5000;
 
 const form = document.querySelector('.img-upload__form');
-const imageUploadModal = document.querySelector('.img-upload__overlay');
-const imageInput = document.querySelector('.img-upload__input');
-const uploadPreview = document.querySelector('.img-upload__preview img');
-const imageSubmitButton = document.querySelector('.img-upload__submit');
-const imageFormHashtagInput = document.querySelector('.text__hashtags');
-const imageFormDescriptionInput = document.querySelector('.text__description');
-const imageUploadCloseButton = document.querySelector('.img-upload__cancel');
-const scaleSmallerButton = document.querySelector('.scale__control--smaller');
-const scaleBiggerButton = document.querySelector('.scale__control--bigger');
-const filtersList = document.querySelector('.effects__list');
-const sliderContainer = document.querySelector('.img-upload__effect-level');
+const imageUploadModal = form.querySelector('.img-upload__overlay');
+const imageInput = form.querySelector('.img-upload__input');
+const uploadPreview = form.querySelector('.img-upload__preview img');
+const imageSubmitButton = form.querySelector('.img-upload__submit');
+const imageFormHashtagInput = form.querySelector('.text__hashtags');
+const imageFormDescriptionInput = form.querySelector('.text__description');
+const imageUploadCloseButton = form.querySelector('.img-upload__cancel');
+const scaleSmallerButton = form.querySelector('.scale__control--smaller');
+const scaleBiggerButton = form.querySelector('.scale__control--bigger');
+const filtersList = form.querySelector('.effects__list');
+const sliderContainer = form.querySelector('.img-upload__effect-level');
 const submitErrorTemplate = document.querySelector('#error').content.querySelector('.error');
 const submitSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 
 const escapeKeydown = (evt) => {
-  if (evt.key === 'Escape') {
+  if (isEscapeKeydown(evt)) {
     const isErrorMessage = document.querySelector('.error');
 
     if (document.activeElement === imageFormHashtagInput || document.activeElement === imageFormDescriptionInput || isErrorMessage) {
@@ -102,7 +103,7 @@ const showSubmitError = () => {
   });
 
   function errorEscapeKeydown(evt) {
-    if (evt.key === 'Escape') {
+    if (isEscapeKeydown(evt)) {
       submitError.remove();
     }
   }
@@ -133,7 +134,7 @@ const showSubmitSuccess = () => {
   });
 
   const successEscapeKeydown = (evt) => {
-    if (evt.key === 'Escape') {
+    if (isEscapeKeydown(evt)) {
       submitSuccess.remove();
     }
   };

@@ -1,3 +1,5 @@
+import { isEscapeKeydown } from './functions.js';
+
 const PART_OF_COMMENTS = 5;
 
 const bigPictureModal = document.querySelector('.big-picture');
@@ -6,16 +8,16 @@ const bigPictureImg = bigPictureModal.querySelector('.big-picture__img img');
 const bigPictureLikes = bigPictureModal.querySelector('.likes-count');
 const bigPictureDescription = bigPictureModal.querySelector('.social__caption');
 const bigPictureTotalCommentsCount = bigPictureModal.querySelector('.social__comment-total-count');
-const bigPictureCommentsList = document.querySelector('.social__comments');
-const bigPictureCommentsLoader = document.querySelector('.comments-loader');
+const bigPictureCommentsList = bigPictureModal.querySelector('.social__comments');
+const bigPictureCommentsLoader = bigPictureModal.querySelector('.comments-loader');
 const commentTemplateItem = document.querySelector('#comment').content.querySelector('.social__comment');
-const bigPictureCommentsShownCount = document.querySelector('.social__comment-shown-count');
+const bigPictureCommentsShownCount = bigPictureModal.querySelector('.social__comment-shown-count');
 
 let comments = [];
 let renderedComments = 0;
 
 const onEscapeKeydown = (evt) => {
-  if (evt.key === 'Escape') {
+  if (isEscapeKeydown(evt)) {
     bigPictureModalCloser();
   }
 };

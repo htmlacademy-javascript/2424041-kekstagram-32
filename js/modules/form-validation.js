@@ -5,7 +5,7 @@ const errorMessages = {
   MAX_COUNT: `Максимальное число хэштегов ${MAX_HASHTAG_COUNT}`,
   UNIQUE: 'Хэштег должен быть уникальным.',
   INVALID_SAMPLE: 'Хэштег должен начинаться с \'#\' и может содержать только символы от \'A-z\', \'А-я\', цифры \'0-9\'. Хэштеги должны быть разделены пробелом.',
-  MAX_COMMENT_LENGTH: 'Комментарий не может быть длиннее 140 символов.'
+  MAX_COMMENT_LENGTH: `Комментарий не может быть длиннее ${MAX_COMMENT_LENGTH} символов.`
 };
 
 const form = document.querySelector('.img-upload__form');
