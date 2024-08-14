@@ -1,3 +1,7 @@
+function isEscapeKeydown (evt) {
+  return evt.key === 'Escape';
+}
+
 function debounce(callback, timeoutDelay = 500) {
   let timeoutId;
 
@@ -8,4 +12,4 @@ function debounce(callback, timeoutDelay = 500) {
   };
 }
 
-export { debounce };
+export { isEscapeKeydown, debounce };
